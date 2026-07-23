@@ -24,14 +24,14 @@ trait FlexibleJsonResource
         ?Closure $resolver = null,
         ?string $alias = null,
         string $prefix = '',
-        string $suffix = ''
+        string $suffix = '',
     ): MergeValue|MissingValue {
         $attributePresent = array_key_exists($key, $this->resourceAttributes());
 
         /** @var MergeValue|MissingValue */
         return $this->mergeWhen(! $optional || $attributePresent, fn (): array => [
             $this->formatKey($key, $alias, $prefix, $suffix) => $this->normalizeValue(
-                $resolver instanceof Closure ? $resolver($this->{$key}) : $this->{$key}
+                $resolver instanceof Closure ? $resolver($this->{$key}) : $this->{$key},
             ),
         ]);
     }
@@ -41,7 +41,7 @@ trait FlexibleJsonResource
         ?Closure $resolver = null,
         ?string $alias = null,
         string $prefix = '',
-        string $suffix = ''
+        string $suffix = '',
     ): MergeValue|MissingValue {
         return $this->attribute($key, true, $resolver, $alias, $prefix, $suffix);
     }
@@ -51,14 +51,14 @@ trait FlexibleJsonResource
         ?Closure $resolver = null,
         ?string $alias = null,
         string $prefix = '',
-        string $suffix = ''
+        string $suffix = '',
     ): MergeValue|MissingValue {
         $relationLoaded = $this->resourceRelationLoaded($key);
 
         /** @var MergeValue|MissingValue */
         return $this->mergeWhen($relationLoaded, fn (): array => [
             $this->formatKey($key, $alias, $prefix, $suffix) => $this->normalizeValue(
-                $resolver instanceof Closure ? $resolver($this->{$key}) : $this->{$key}
+                $resolver instanceof Closure ? $resolver($this->{$key}) : $this->{$key},
             ),
         ]);
     }
@@ -123,7 +123,7 @@ trait FlexibleJsonResource
 
     private function formatKey(string $key, ?string $alias, string $prefix, string $suffix): string
     {
-        return $prefix . (in_array($alias, [null, '', '0'], true) ? $key : $alias) . $suffix;
+        return $prefix.(in_array($alias, [null, '', '0'], true) ? $key : $alias).$suffix;
     }
 
     private function normalizeValue(mixed $value): mixed

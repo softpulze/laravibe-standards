@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SoftPulze\LaravibeStandards\Resources;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Pagination\AbstractCursorPaginator;
 use Illuminate\Pagination\AbstractPaginator;
@@ -18,6 +19,22 @@ class AppResourceCollection extends ResourceCollection
         }
 
         parent::__construct($resource);
+    }
+
+    /**
+     * Get the resource that this resource collection collects.
+     *
+     * Skips the name-based guess to avoid resolving to the abstract AppResource.
+     * App-level collections should set $collects explicitly or override this method.
+     *
+     * @return class-string<JsonResource>|null
+     */
+    protected function collects(): ?string
+    {
+        /** @var class-string<JsonResource>|null $collects */
+        $collects = $this->collects;
+
+        return $collects;
     }
 
     /**

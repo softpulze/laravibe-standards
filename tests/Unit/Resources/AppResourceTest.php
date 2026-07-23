@@ -6,16 +6,33 @@ use SoftPulze\LaravibeStandards\Resources\AppResource;
 use SoftPulze\LaravibeStandards\Resources\AppResourceCollection;
 
 it('resolves to a plain array via toInertia', function () {
-    $model = new class(['id' => 1, 'name' => 'Alice']) {
+    $model = new class(['id' => 1, 'name' => 'Alice'])
+    {
         public function __construct(private array $attributes) {}
 
-        public function getAttributes(): array { return $this->attributes; }
-        public function relationLoaded(string $key): bool { return false; }
-        public function __get(string $key): mixed { return $this->attributes[$key] ?? null; }
-        public function __isset(string $key): bool { return isset($this->attributes[$key]); }
+        public function getAttributes(): array
+        {
+            return $this->attributes;
+        }
+
+        public function relationLoaded(string $key): bool
+        {
+            return false;
+        }
+
+        public function __get(string $key): mixed
+        {
+            return $this->attributes[$key] ?? null;
+        }
+
+        public function __isset(string $key): bool
+        {
+            return isset($this->attributes[$key]);
+        }
     };
 
-    $resource = new class($model) extends AppResource {
+    $resource = new class($model) extends AppResource
+    {
         public static $wrap = null;
 
         public function toArray($request): array

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 use Illuminate\Support\Carbon;
 use SoftPulze\LaravibeStandards\Resources\AppResource;
-use SoftPulze\LaravibeStandards\Resources\Concerns\FlexibleJsonResource;
 
 function makeModel(array $attributes = [], array $loadedRelations = []): object
 {
-    return new class($attributes, $loadedRelations) {
+    return new class($attributes, $loadedRelations)
+    {
         public function __construct(
             private array $attributes,
             private array $loadedRelations,
@@ -45,7 +45,8 @@ function makeModel(array $attributes = [], array $loadedRelations = []): object
 }
 
 it('resolves id attribute', function () {
-    $resource = new class(makeModel(['id' => 42])) extends AppResource {
+    $resource = new class(makeModel(['id' => 42])) extends AppResource
+    {
         public static $wrap = null;
 
         public function toArray($request): array
@@ -58,7 +59,8 @@ it('resolves id attribute', function () {
 });
 
 it('resolves a present attribute', function () {
-    $resource = new class(makeModel(['name' => 'Alice'])) extends AppResource {
+    $resource = new class(makeModel(['name' => 'Alice'])) extends AppResource
+    {
         public static $wrap = null;
 
         public function toArray($request): array
@@ -71,7 +73,8 @@ it('resolves a present attribute', function () {
 });
 
 it('includes an optional attribute when key is present', function () {
-    $resource = new class(makeModel(['bio' => 'Developer'])) extends AppResource {
+    $resource = new class(makeModel(['bio' => 'Developer'])) extends AppResource
+    {
         public static $wrap = null;
 
         public function toArray($request): array
@@ -84,7 +87,8 @@ it('includes an optional attribute when key is present', function () {
 });
 
 it('omits an optional attribute when key is absent', function () {
-    $resource = new class(makeModel([])) extends AppResource {
+    $resource = new class(makeModel([])) extends AppResource
+    {
         public static $wrap = null;
 
         public function toArray($request): array
@@ -97,7 +101,8 @@ it('omits an optional attribute when key is absent', function () {
 });
 
 it('uses resolver closure for attribute', function () {
-    $resource = new class(makeModel(['status' => 'active'])) extends AppResource {
+    $resource = new class(makeModel(['status' => 'active'])) extends AppResource
+    {
         public static $wrap = null;
 
         public function toArray($request): array
@@ -110,7 +115,8 @@ it('uses resolver closure for attribute', function () {
 });
 
 it('supports alias prefix and suffix on attribute', function () {
-    $resource = new class(makeModel(['name' => 'Alice'])) extends AppResource {
+    $resource = new class(makeModel(['name' => 'Alice'])) extends AppResource
+    {
         public static $wrap = null;
 
         public function toArray($request): array
@@ -123,7 +129,8 @@ it('supports alias prefix and suffix on attribute', function () {
 });
 
 it('includes relation when eager loaded', function () {
-    $resource = new class(makeModel([], ['posts' => ['Post A', 'Post B']])) extends AppResource {
+    $resource = new class(makeModel([], ['posts' => ['Post A', 'Post B']])) extends AppResource
+    {
         public static $wrap = null;
 
         public function toArray($request): array
@@ -136,7 +143,8 @@ it('includes relation when eager loaded', function () {
 });
 
 it('omits relation when not eager loaded', function () {
-    $resource = new class(makeModel([])) extends AppResource {
+    $resource = new class(makeModel([])) extends AppResource
+    {
         public static $wrap = null;
 
         public function toArray($request): array
@@ -152,7 +160,8 @@ it('resolves timestamps', function () {
     $now = Carbon::create(2026, 7, 24, 12, 0, 0);
     $later = Carbon::create(2026, 7, 25, 14, 30, 0);
 
-    $resource = new class(makeModel(['created_at' => $now, 'updated_at' => $later])) extends AppResource {
+    $resource = new class(makeModel(['created_at' => $now, 'updated_at' => $later])) extends AppResource
+    {
         public static $wrap = null;
 
         public function toArray($request): array
@@ -172,11 +181,8 @@ it('resolves soft delete timestamps', function () {
     $updated = Carbon::create(2026, 7, 25, 14, 30, 0);
     $deleted = Carbon::create(2026, 7, 26, 10, 0, 0);
 
-    $resource = new class(makeModel([
-        'created_at' => $created,
-        'updated_at' => $updated,
-        'deleted_at' => $deleted,
-    ])) extends AppResource {
+    $resource = new class(makeModel(['created_at' => $created, 'updated_at' => $updated, 'deleted_at' => $deleted])) extends AppResource
+    {
         public static $wrap = null;
 
         public function toArray($request): array
@@ -193,7 +199,8 @@ it('resolves soft delete timestamps', function () {
 });
 
 it('handles absent timestamps gracefully', function () {
-    $resource = new class(makeModel(['name' => 'Alice'])) extends AppResource {
+    $resource = new class(makeModel(['name' => 'Alice'])) extends AppResource
+    {
         public static $wrap = null;
 
         public function toArray($request): array
