@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SoftPulze\LaravibeStandards;
 
 use Illuminate\Support\ServiceProvider;
-use SoftPulze\LaravibeStandards\Console\Commands\LaravibeStandardsCommand;
+use SoftPulze\LaravibeStandards\Console\Commands\MakeDTOCommand;
 
 class LaravibeStandardsServiceProvider extends ServiceProvider
 {
@@ -32,8 +32,12 @@ class LaravibeStandardsServiceProvider extends ServiceProvider
             __DIR__.'/../config/laravibe-standards.php' => config_path('laravibe-standards.php'),
         ], ['laravibe-standards', 'laravibe-standards-config']);
 
+        $this->publishes([
+            __DIR__.'/../../stubs/dto.stub' => base_path('stubs/laravibe-standards/dto.stub'),
+        ], ['laravibe-standards', 'laravibe-standards-stubs']);
+
         $this->commands([
-            LaravibeStandardsCommand::class,
+            MakeDTOCommand::class,
         ]);
     }
 }
