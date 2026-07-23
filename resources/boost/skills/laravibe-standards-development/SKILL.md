@@ -42,16 +42,29 @@ The package provides a shared `HasEnumMetadata` trait with label, option, and va
 - use `options()`, `values()`, `names()` for structured output
 - use `isValidValue()`, `isValidName()`, `fromValueOrFail()` for validation
 
-### 4. Publish stubs for customization (optional)
+### 4. Apply the Resource convention
+
+The package provides base resource classes for API and Inertia responses with reusable field helpers.
+
+- generate a resource: `php artisan make:resource {Name}` (uses package stubs after publishing)
+- generate a collection: `php artisan make:resource {Name}Collection --collection`
+- extend `SoftPulze\LaravibeStandards\Resources\AppResource` for single resources
+- extend `SoftPulze\LaravibeStandards\Resources\AppResourceCollection` for collections
+- use helpers in `toArray()`: `id()`, `attribute()`, `optionalAttribute()`, `relation()`
+- use `toInertia()` when passing resources to `inertia()` props
+
+### 5. Publish stubs for customization (optional)
 
 ```bash
 php artisan vendor:publish --tag="laravibe-standards-stubs"
 ```
 
-This publishes DTO and enum stubs:
+This publishes DTO, enum, and resource stubs:
 - `stubs/laravibe-standards/dto.stub` — used by `make:dto`
 - `stubs/enum.stub` — used by `make:enum` for pure enums
 - `stubs/enum.backed.stub` — used by `make:enum` for backed enums
+- `stubs/resource.stub` — used by `make:resource` for single resources
+- `stubs/resource-collection.stub` — used by `make:resource --collection`
 
 ## DTO Conventions
 
@@ -129,16 +142,54 @@ One optional method is also available:
 - Put domain-specific behavior on individual enum classes.
 - Keep DTO enum serialization behavior in `AsDTO` unchanged.
 
+## Resource Conventions
+
+Follow these rules when creating resources with Laravibe Standards.
+
+### Placement Rules
+
+- Place resources only in `app/Http/Resources`.
+- Use domain subfolders for feature grouping, for example `app/Http/Resources/Admin` or `app/Http/Resources/Account`.
+- Use `make:resource` command to generate files.
+
+### Class Rules
+
+- Every resource must be a `final class`.
+- Single resources must extend `\SoftPulze\LaravibeStandards\Resources\AppResource`.
+- Collection resources must extend `\SoftPulze\LaravibeStandards\Resources\AppResourceCollection`.
+- Implement `Illuminate\Http\Request` type-hinting in `toArray()`.
+
+### Naming Rules
+
+- Use singular names ending with `Resource` for single resources (e.g., `UserResource`, `PostResource`).
+- Use singular or collection names ending with `Collection` for collection resources (e.g., `UserCollection`, `PostCollection`).
+
+### Field Definition Rules
+
+- Use the `FlexibleJsonResource` trait helpers exclusively in `toArray()`.
+- Core helpers: `id()`, `attribute()`, `optionalAttribute()`, `relation()`.
+- Timestamp helpers: `createdAt()`, `updatedAt()`, `deletedAt()`, `timestamps()`, `softDeleteTimestamps()`.
+- Support field customization with `alias`, `prefix`, and `suffix` parameters.
+- Never directly access model attributes or relations — use the trait helpers.
+
+### Serialization Rules
+
+- Use `toArray()` for API responses.
+- Use `toInertia()` (from `AppResource` or `AppResourceCollection`) when passing to Vue components.
+- Relations must use `relation()` to ensure they're only serialized if eager-loaded, preventing N+1 queries.
+
+### Design Rules
+
+- Keep resources focused on serialization only — no business logic, queries, or transformations.
+- Prefer eager-loading via query builder over lazy loading via `relation()`.
+
 ## Rules, References, and Templates
 
 Read before executing:
 
 - refer to `src/DTOs/README.md` inside the package for the full DTO convention guide
 - refer to `src/Enums/README.md` inside the package for the full enum guide
-
-Read before executing:
-
-- refer to `src/DTOs/README.md` inside the package for the full DTO convention guide
+- refer to `src/Resources/README.md` inside the package for the full resource guide
 
 ## Examples
 
@@ -180,6 +231,11 @@ public function __invoke(UpdateProfileRequest $request)
 - Create `app/Enums/ToastType` as a string-backed enum using `HasEnumMetadata` with cases like `Error`, `Success`, `Warning`.
 - Generate a `Billing/InvoiceStatus` enum with `HasEnumMetadata` and a helper to check if the invoice can be paid.
 - Refactor an existing plain enum in `app/Enums` to use `HasEnumMetadata` and replace manual helper methods.
+- Create a `UserResource` that extends `AppResource` and includes `id()`, `attribute('name')`, `attribute('email')`, and `timestamps()`.
+- Generate a `PostCollection` resource and refactor `PostResource` to use it with pagination.
+- Add a `relation()` helper for posts inside `UserResource` to prevent N+1 queries.
+- Create `app/Http/Resources/Admin/AdminUserResource` that extends `AppResource` with admin-specific fields.
+- Update `UserResource` to use `optionalAttribute()` for nullable fields like `email_verified_at`.
 
 ## Anti-patterns
 
@@ -188,3 +244,6 @@ public function __invoke(UpdateProfileRequest $request)
 - do not use `mixed` for DTO properties when a strict type is available
 - do not skip `readonly` — DTOs must be immutable
 - do not document package internals here; keep the skill focused on adoption in Laravel apps
+- do not add business logic or database queries inside resource `toArray()` methods
+- do not access model relations directly in `toArray()`; use `relation()` instead
+- do not skip `toInertia()` when passing resources to `inertia()` props

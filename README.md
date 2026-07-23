@@ -120,6 +120,46 @@ ToastType::Error->label();           // 'Error'
 
 See the [full enum guide](src/Enums/README.md) for conventions, the concern contract, and design rules.
 
+### Resources
+
+Laravibe Standards provides base resource classes for API and Inertia responses with reusable field helpers.
+
+**Generate a resource:**
+
+```bash
+php artisan make:resource UserResource
+php artisan make:resource UserCollection --collection
+```
+
+**Define a resource:**
+
+```php
+final class UserResource extends \SoftPulze\LaravibeStandards\Resources\AppResource
+{
+    public function toArray(Request $request): array
+    {
+        return [
+            $this->id(),
+            $this->attribute('name'),
+            $this->attribute('email'),
+            ...$this->timestamps(),
+        ];
+    }
+}
+```
+
+**Use in controllers:**
+
+```php
+UserResource::make($user);                           // single
+UserResource::collection(User::paginate());          // paginated
+
+// Inertia
+return inertia('users/Show', ['user' => UserResource::make($user)->toInertia()]);
+```
+
+See the [full resource guide](src/Resources/README.md) for helpers, conventions, and serialization rules.
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
