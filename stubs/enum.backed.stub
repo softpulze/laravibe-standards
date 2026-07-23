@@ -1,0 +1,12 @@
+<?php
+
+namespace {{ namespace }};
+
+use SoftPulze\LaravibeStandards\Enums\Concerns\HasEnumMetadata;
+
+enum {{ class }}: {{ type }}
+{
+    use HasEnumMetadata;
+
+    //
+}
