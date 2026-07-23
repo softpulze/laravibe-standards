@@ -32,12 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravibeStandards\\LaravibeStandards\\": "src/"
+            "SoftPulze\\LaravibeStandards\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LaravibeStandards\\LaravibeStandards\\Tests\\": "tests/",
+            "SoftPulze\\LaravibeStandards\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/",
             "Workbench\\Database\\Factories\\": "workbench/database/factories/",
             "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
@@ -87,10 +87,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LaravibeStandards\\LaravibeStandards\\LaravibeStandardsServiceProvider"
+                "SoftPulze\\LaravibeStandards\\LaravibeStandardsServiceProvider"
             ],
             "aliases": {
-                "LaravibeStandards": "LaravibeStandards\\LaravibeStandards\\Facades\\LaravibeStandards"
+                "LaravibeStandards": "SoftPulze\\LaravibeStandards\\Facades\\LaravibeStandards"
             }
         }
     },

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use LaravibeStandards\LaravibeStandards\LaravibeStandards;
+use SoftPulze\LaravibeStandards\LaravibeStandards;
 
 it('resolves the singleton', function () {
     expect(app(LaravibeStandards::class))->toBeInstanceOf(LaravibeStandards::class);

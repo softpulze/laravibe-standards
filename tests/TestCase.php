@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace LaravibeStandards\LaravibeStandards\Tests;
+namespace SoftPulze\LaravibeStandards\Tests;
 
-use LaravibeStandards\LaravibeStandards\LaravibeStandardsServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use SoftPulze\LaravibeStandards\LaravibeStandardsServiceProvider;
 
 abstract class TestCase extends Orchestra
 {

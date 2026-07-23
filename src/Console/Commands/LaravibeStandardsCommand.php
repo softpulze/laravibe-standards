@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LaravibeStandards\LaravibeStandards\Console\Commands;
+namespace SoftPulze\LaravibeStandards\Console\Commands;
 
 use Illuminate\Console\Command;
 
