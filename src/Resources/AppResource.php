@@ -26,7 +26,7 @@ abstract class AppResource extends JsonResource
      * Create a new resource collection instance.
      */
     #[Override]
-    protected static function newCollection($resource): AppResourceCollection
+    protected static function newCollection(mixed $resource): AppResourceCollection
     {
         return new AppResourceCollection($resource, static::class);
     }
