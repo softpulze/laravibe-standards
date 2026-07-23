@@ -33,13 +33,25 @@ The package provides immutable, typed DTOs with automatic hydration and serializ
 - create an updated copy with `$dto->with(['field' => 'new value'])`
 - extend the DTO with custom static constructors like `fromModel($model)` that delegate to `fromArray`
 
-### 3. Publish stubs for customization (optional)
+### 3. Apply the Enum convention
+
+The package provides a shared `HasEnumMetadata` trait with label, option, and validation helpers for backed and unit enums.
+
+- generate an enum: `php artisan make:enum {Name}`
+- after publishing stubs, generated enums include `use HasEnumMetadata`
+- use `options()`, `values()`, `names()` for structured output
+- use `isValidValue()`, `isValidName()`, `fromValueOrFail()` for validation
+
+### 4. Publish stubs for customization (optional)
 
 ```bash
 php artisan vendor:publish --tag="laravibe-standards-stubs"
 ```
 
-This publishes `stubs/laravibe-standards/dto.stub` which you can customize. The `make:dto` command will use the published stub if present.
+This publishes DTO and enum stubs:
+- `stubs/laravibe-standards/dto.stub` — used by `make:dto`
+- `stubs/enum.stub` — used by `make:enum` for pure enums
+- `stubs/enum.backed.stub` — used by `make:enum` for backed enums
 
 ## DTO Conventions
 
@@ -83,7 +95,46 @@ Follow these rules when creating DTOs with Laravibe Standards.
 - Do not put database queries or heavy business logic inside DTOs.
 - Use custom constructors like `fromModel()` as thin wrappers that delegate to `fromArray()`.
 
+## Enum Conventions
+
+Follow these rules when creating enums with Laravibe Standards.
+
+### Placement Rules
+
+- Place enums in `app/Enums`.
+- Place shared enum concerns in `app/Enums/Concerns`.
+- Use `make:enum` command to generate files.
+
+### Base Concern Contract
+
+The shared concern `HasEnumMetadata` provides exactly these 8 core methods:
+
+1. `label(): string`
+2. `toOption(): array{name: string, value: int|string, label: string}`
+3. `options(): array<int, array{name: string, value: int|string, label: string}>`
+4. `values(): array<int, int|string>`
+5. `names(): array<int, string>`
+6. `isValidValue(int|string $value): bool`
+7. `isValidName(string $name): bool`
+8. `fromValueOrFail(int|string $value): self`
+
+One optional method is also available:
+
+1. `tryFromName(string $name): ?self`
+
+### Design Rules
+
+- Keep shared enum concerns pure and deterministic.
+- Do not add database calls, HTTP calls, or heavy business logic inside enum concerns.
+- Put domain-specific behavior on individual enum classes.
+- Keep DTO enum serialization behavior in `AsDTO` unchanged.
+
 ## Rules, References, and Templates
+
+Read before executing:
+
+- refer to `src/DTOs/README.md` inside the package for the full DTO convention guide
+- refer to `src/Enums/README.md` inside the package for the full enum guide
 
 Read before executing:
 
@@ -126,6 +177,9 @@ public function __invoke(UpdateProfileRequest $request)
 - Create `app/DTOs/Account/UpdateProfileDTO` as `final readonly` using `AsDTO` with `name`, `username`, and nullable `bio`.
 - Generate a `Billing/CreateInvoiceDTO` with typed properties and a `fromModel` helper for draft invoices.
 - Refactor existing DTOs in `app/DTOs` to use `AsDTO` and replace manual `toArray` and `toJson` methods.
+- Create `app/Enums/ToastType` as a string-backed enum using `HasEnumMetadata` with cases like `Error`, `Success`, `Warning`.
+- Generate a `Billing/InvoiceStatus` enum with `HasEnumMetadata` and a helper to check if the invoice can be paid.
+- Refactor an existing plain enum in `app/Enums` to use `HasEnumMetadata` and replace manual helper methods.
 
 ## Anti-patterns
 

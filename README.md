@@ -83,6 +83,43 @@ $updated = $dto->with(['bio' => 'Senior Dev']);
 
 See the [full DTO guide](src/DTOs/README.md) for conventions, type casting, and advanced usage.
 
+### Enums
+
+Laravibe Standards provides a shared `HasEnumMetadata` trait with label, option, and validation helpers for backed and unit enums.
+
+**Generate an enum:**
+
+```bash
+php artisan make:enum ToastType --string
+php artisan make:enum Priority
+```
+
+**Define an enum:**
+
+```php
+enum ToastType: string
+{
+    use \SoftPulze\LaravibeStandards\Enums\Concerns\HasEnumMetadata;
+
+    case Error = 'error';
+    case Success = 'success';
+    case Warning = 'warning';
+    case Info = 'info';
+}
+```
+
+**Use helpers:**
+
+```php
+ToastType::options();    // [{name: 'Error', value: 'error', label: 'Error'}, ...]
+ToastType::values();     // ['error', 'success', 'warning', 'info']
+ToastType::isValidValue('success');  // true
+ToastType::fromValueOrFail('error'); // ToastType::Error
+ToastType::Error->label();           // 'Error'
+```
+
+See the [full enum guide](src/Enums/README.md) for conventions, the concern contract, and design rules.
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
