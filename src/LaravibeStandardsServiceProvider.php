@@ -34,6 +34,8 @@ class LaravibeStandardsServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../../stubs/dto.stub' => base_path('stubs/laravibe-standards/dto.stub'),
+            __DIR__.'/../../stubs/enum.stub' => base_path('stubs/enum.stub'),
+            __DIR__.'/../../stubs/enum.backed.stub' => base_path('stubs/enum.backed.stub'),
         ], ['laravibe-standards', 'laravibe-standards-stubs']);
 
         $this->commands([
