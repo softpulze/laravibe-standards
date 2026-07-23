@@ -1,0 +1,24 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use SoftPulze\LaravibeStandards\DTOs\Concerns\AsDTO;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+
+/**
+ * @implements Arrayable<string, mixed>
+ */
+final readonly class {{ class }} implements Arrayable, Jsonable
+{
+    use AsDTO;
+
+    public function __construct(
+        public string $name,
+        public ?string $description = null,
+    ) {
+        // ...
+    }
+}

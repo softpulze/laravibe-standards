@@ -34,9 +34,54 @@ Or, you may publish each resource individually:
 php artisan vendor:publish --tag="laravibe-standards-config"
 ```
 
+### Publishing Stubs
+
+```bash
+php artisan vendor:publish --tag="laravibe-standards-stubs"
+```
+
 ## Usage
 
-<!-- Add a basic usage example here. -->
+### DTOs (Data Transfer Objects)
+
+Laravibe Standards provides a convention for defining immutable, typed DTOs with automatic hydration and serialization.
+
+**Generate a DTO:**
+
+```bash
+php artisan make:dto UserProfileDTO
+php artisan make:dto Account/UpdateProfileDTO
+```
+
+**Define a DTO:**
+
+```php
+final readonly class UserProfileDTO implements Arrayable, Jsonable
+{
+    use \SoftPulze\LaravibeStandards\DTOs\Concerns\AsDTO;
+
+    public function __construct(
+        public string $name,
+        public ?string $bio = null,
+    ) {
+    }
+}
+```
+
+**Hydrate and serialize:**
+
+```php
+$dto = UserProfileDTO::from($request);
+$dto = UserProfileDTO::fromArray(['name' => 'Alice', 'bio' => 'Developer']);
+
+$array = $dto->toArray();
+$json  = $dto->toJson();
+$data  = $dto->toEloquent();
+
+$updated = $dto->with(['bio' => 'Senior Dev']);
+```
+
+See the [full DTO guide](src/DTOs/README.md) for conventions, type casting, and advanced usage.
 
 ## Changelog
 
