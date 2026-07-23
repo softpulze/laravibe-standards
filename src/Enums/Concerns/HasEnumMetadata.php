@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SoftPulze\LaravibeStandards\Enums\Concerns;
 
+use BackedEnum;
 use InvalidArgumentException;
+use UnitEnum;
 
 trait HasEnumMetadata
 {
@@ -90,9 +92,9 @@ trait HasEnumMetadata
         ];
     }
 
-    private static function extractValue(self $case): int|string
+    private static function extractValue(UnitEnum $case): int|string
     {
-        if (property_exists($case, 'value')) {
+        if ($case instanceof BackedEnum) {
             /** @var int|string $value */
             $value = $case->value;
 
