@@ -27,7 +27,7 @@ declare(strict_types=1);
 
 namespace App\DTOs\Account;
 
-use App\DTOs\Concerns\AsDTO;
+use SoftPulze\LaravibeStandards\DTOs\Concerns\AsDTO;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 
