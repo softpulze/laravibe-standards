@@ -17,18 +17,8 @@ use ReflectionUnionType;
 use UnitEnum;
 
 /**
- * @phpstan-type DTOParameterMetadata array{
- *     name: string,
- *     hasDefault: bool,
- *     default: mixed,
- *     allowsNull: bool,
- *     builtinTypes: array<int, string>,
- *     classTypes: array<int, class-string>
- * }
- * @phpstan-type DTOConstructorMetadata array{
- *     parameters: array<int, DTOParameterMetadata>,
- *     allowedKeys: array<string, true>
- * }
+ * @phpstan-type DTOParameterMetadata = array{name: string, hasDefault: bool, default: mixed, allowsNull: bool, builtinTypes: array<int, string>, classTypes: array<class-string>}
+ * @phpstan-type DTOConstructorMetadata = array{parameters: array<int, DTOParameterMetadata>, allowedKeys: array<string, true>}
  */
 trait AsDTO
 {
