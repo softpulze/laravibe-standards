@@ -41,11 +41,9 @@ final class MakeDTOCommand extends GeneratorCommand
 
     /**
      * Get the default namespace for the class.
-     *
-     * @param  string  $rootNamespace
      */
     #[Override]
-    protected function getDefaultNamespace($rootNamespace): string
+    protected function getDefaultNamespace(mixed $rootNamespace): string
     {
         return $rootNamespace.'\\DTOs';
     }

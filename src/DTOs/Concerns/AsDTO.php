@@ -108,10 +108,7 @@ trait AsDTO
         return $normalized;
     }
 
-    /**
-     * @param  int  $options
-     */
-    public function toJson($options = 0): string
+    public function toJson(mixed $options = 0): string
     {
         try {
             return json_encode($this->toArray(), $options | JSON_THROW_ON_ERROR);
