@@ -75,11 +75,8 @@ trait AsDTO
             $arguments[] = static::castValue($data[$name], $parameter);
         }
 
-        /** @var ReflectionClass<static> $reflection */
-        $reflection = new ReflectionClass(static::class);
-
         /** @var static $dto */
-        $dto = $reflection->newInstanceArgs($arguments);
+        $dto = new ReflectionClass(static::class)->newInstanceArgs($arguments);
 
         return $dto;
     }
