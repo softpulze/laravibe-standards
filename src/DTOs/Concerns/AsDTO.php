@@ -147,7 +147,7 @@ trait AsDTO
      */
     public function forEloquent(array $extra = []): array
     {
-        return [...$this->toEloquent(), ...$extra];
+        return array_merge($this->toEloquent(), $extra);
     }
 
     /**
@@ -156,7 +156,7 @@ trait AsDTO
     public function with(array $overrides): static
     {
         /** @var array<string, mixed> $payload */
-        $payload = [...$this->toArray(), ...$overrides];
+        $payload = array_merge($this->toArray(), $overrides);
 
         return static::fromArray($payload);
     }
@@ -299,7 +299,7 @@ trait AsDTO
             return $value;
         }
 
-        $expectedTypes = implode('|', [...$parameter['builtinTypes'], ...$parameter['classTypes']]);
+        $expectedTypes = implode('|', array_merge($parameter['builtinTypes'], $parameter['classTypes']));
 
         throw new InvalidArgumentException('Invalid type for property ['.$parameter['name'].'] on '.static::class.'. Expected ['.$expectedTypes.'], got ['.static::valueType($value).'].');
     }
