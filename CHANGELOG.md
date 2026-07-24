@@ -1,6 +1,17 @@
 # Release Notes
 
-## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.2.0...1.x)
+## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.3.0...HEAD)
+
+## [v0.3.0](https://github.com/softpulze/laravibe-standards/compare/v0.2.0...v0.3.0) - 2026-07-24
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.3.0 -->
+### What's Changed
+
+#### Other Changes
+
+* feat: add resource conventions by @ashokbaruaakas in https://github.com/softpulze/laravibe-standards/pull/4
+
+**Full Changelog**: https://github.com/softpulze/laravibe-standards/compare/v0.2.0...v0.3.0
 
 ## [v0.2.0](https://github.com/softpulze/laravibe-standards/compare/v0.1.0...v0.2.0) - 2026-07-23
 
