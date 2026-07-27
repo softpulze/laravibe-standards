@@ -35,6 +35,17 @@ Release notes are auto-generated from PR labels via `.github/release.yml`. Alway
 
 Example: `gh pr create --title "feat: add resource conventions" --body "..." --label enhancement`
 
+Release commands (run from `main` with clean working tree):
+
+```
+composer test
+git tag -a vX.Y.Z -m "vX.Y.Z"
+git push origin vX.Y.Z
+gh release create vX.Y.Z --title "vX.Y.Z"
+```
+
+The `update-changelog.yml` workflow fires on release and auto-updates CHANGELOG.md. Note: `--title` is required — without it the workflow fails because `latest-version` is empty.
+
 ## Local Skills
 
 - `package-scaffold`: use when adding package capabilities or wiring them through the service provider, including commands, migrations, routes, config, views, translations, assets, middleware, publish tags, workbench files, and console-only behavior.
