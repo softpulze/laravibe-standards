@@ -37,7 +37,7 @@ The package provides immutable, typed DTOs with automatic hydration and serializ
 
 The package provides a shared `HasEnumMetadata` trait with label, option, and validation helpers for backed and unit enums.
 
-- generate an enum: `php artisan make:enum {Name}`
+- generate an enum (int-backed): `php artisan make:enum {Name} --int`
 - after publishing stubs, generated enums include `use HasEnumMetadata`
 - use `options()`, `values()`, `names()` for structured output
 - use `isValidValue()`, `isValidName()`, `fromValueOrFail()` for validation
@@ -117,6 +117,12 @@ Follow these rules when creating enums with Laravibe Standards.
 - Place enums in `app/Enums`.
 - Place shared enum concerns in `app/Enums/Concerns`.
 - Use `make:enum` command to generate files.
+
+### Backing Type Rules
+
+- Prefer int-backed enums for values that are stored in the database or serialized in payloads. Generate with `--int`.
+- Use string-backed enums only when the stored value must be human-readable or interoperates with an external system (e.g., API keys, standard status strings). Generate with `--string`.
+- Use unit enums (no flag) only for in-memory domain concepts that never cross a storage boundary.
 
 ### Base Concern Contract
 
@@ -228,7 +234,7 @@ public function __invoke(UpdateProfileRequest $request)
 - Create `app/DTOs/Account/UpdateProfileDTO` as `final readonly` using `AsDTO` with `name`, `username`, and nullable `bio`.
 - Generate a `Billing/CreateInvoiceDTO` with typed properties and a `fromModel` helper for draft invoices.
 - Refactor existing DTOs in `app/DTOs` to use `AsDTO` and replace manual `toArray` and `toJson` methods.
-- Create `app/Enums/ToastType` as a string-backed enum using `HasEnumMetadata` with cases like `Error`, `Success`, `Warning`.
+- Create `app/Enums/ToastType` as an int-backed enum using `HasEnumMetadata` with cases like `Error`, `Success`, `Warning`.
 - Generate a `Billing/InvoiceStatus` enum with `HasEnumMetadata` and a helper to check if the invoice can be paid.
 - Refactor an existing plain enum in `app/Enums` to use `HasEnumMetadata` and replace manual helper methods.
 - Create a `UserResource` that extends `AppResource` and includes `id()`, `attribute('name')`, `attribute('email')`, and `timestamps()`.

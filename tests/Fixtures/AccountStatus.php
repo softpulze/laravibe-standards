@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SoftPulze\LaravibeStandards\Tests\Fixtures;
 
-enum AccountStatus: string
+enum AccountStatus: int
 {
-    case Active = 'active';
-    case Inactive = 'inactive';
-    case Suspended = 'suspended';
+    case Active = 1;
+    case Inactive = 2;
+    case Suspended = 3;
 }

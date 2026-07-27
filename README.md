@@ -90,32 +90,32 @@ Laravibe Standards provides a shared `HasEnumMetadata` trait with label, option,
 **Generate an enum:**
 
 ```bash
+php artisan make:enum ToastType --int
 php artisan make:enum ToastType --string
-php artisan make:enum Priority
 ```
 
 **Define an enum:**
 
 ```php
-enum ToastType: string
+enum ToastType: int
 {
     use \SoftPulze\LaravibeStandards\Enums\Concerns\HasEnumMetadata;
 
-    case Error = 'error';
-    case Success = 'success';
-    case Warning = 'warning';
-    case Info = 'info';
+    case Error = 1;
+    case Success = 2;
+    case Warning = 3;
+    case Info = 4;
 }
 ```
 
 **Use helpers:**
 
 ```php
-ToastType::options();    // [{name: 'Error', value: 'error', label: 'Error'}, ...]
-ToastType::values();     // ['error', 'success', 'warning', 'info']
-ToastType::isValidValue('success');  // true
-ToastType::fromValueOrFail('error'); // ToastType::Error
-ToastType::Error->label();           // 'Error'
+ToastType::options();    // [{name: 'Error', value: 1, label: 'Error'}, ...]
+ToastType::values();     // [1, 2, 3, 4]
+ToastType::isValidValue(2);  // true
+ToastType::fromValueOrFail(1); // ToastType::Error
+ToastType::Error->label();     // 'Error'
 ```
 
 See the [full enum guide](src/Enums/README.md) for conventions, the concern contract, and design rules.

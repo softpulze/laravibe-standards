@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 beforeEach(function () {
     File::deleteDirectory(app_path('Enums'));
     File::ensureDirectoryExists(app_path('Enums'));
-    File::ensureDirectoryExists(base_path('stubs'));
+    File::makeDirectory(base_path('stubs'), 0755, true, true);
 });
 
 afterEach(function () {
@@ -16,7 +16,7 @@ afterEach(function () {
     File::delete(base_path('stubs/enum.stub'));
 });
 
-it('generates backed enum with package stub', function () {
+it('generates string backed enum with package stub', function () {
     File::copy(__DIR__.'/../../stubs/enum.backed.stub', base_path('stubs/enum.backed.stub'));
 
     $this->artisan('make:enum', ['name' => 'ToastType', '--string' => true])

@@ -6,12 +6,12 @@ namespace SoftPulze\LaravibeStandards\Tests\Fixtures;
 
 use SoftPulze\LaravibeStandards\Enums\Concerns\HasEnumMetadata;
 
-enum ToastType: string
+enum ToastType: int
 {
     use HasEnumMetadata;
 
-    case Error = 'error';
-    case Success = 'success';
-    case Warning = 'warning';
-    case Info = 'info';
+    case Error = 1;
+    case Success = 2;
+    case Warning = 3;
+    case Info = 4;
 }
