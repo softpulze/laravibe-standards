@@ -2,6 +2,10 @@
 
 ## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.3.1...HEAD)
 
+### Fixed
+
+- Restored manually written changelog entries in the v0.3.1 section that were overwritten by auto-generated release notes.
+
 ## [v0.3.1](https://github.com/softpulze/laravibe-standards/compare/v0.3.0...v0.3.1) - 2026-07-27
 
 ### Changed
