@@ -1,10 +1,21 @@
 # Release Notes
 
-## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.3.3...HEAD)
+## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.3.4...HEAD)
 
 ### Documentation
 
 - Added `--generate-notes` to release command in AGENTS.md so release page is automatically populated with categorized PR notes.
+
+## [v0.3.4](https://github.com/softpulze/laravibe-standards/compare/v0.3.3...v0.3.4) - 2026-07-27
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.3.4 -->
+### What's Changed
+
+#### Documentation
+
+* docs: add --generate-notes to release command by @ashokbaruaakas in https://github.com/softpulze/laravibe-standards/pull/10
+
+**Full Changelog**: https://github.com/softpulze/laravibe-standards/compare/v0.3.3...v0.3.4
 
 ## [v0.3.3](https://github.com/softpulze/laravibe-standards/compare/v0.3.2...v0.3.3) - 2026-07-27
 
