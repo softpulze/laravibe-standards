@@ -19,6 +19,22 @@ This repository is a Laravel package. Keep the package focused, idiomatic, and e
 - Workbench build: `composer build`
 - Workbench server: `composer serve`
 
+## Release Conventions
+
+Release notes are auto-generated from PR labels via `.github/release.yml`. Always pass `--label` when running `gh pr create`:
+
+| PR title prefix | `--label` value |
+|----------------|-----------------|
+| `feat:` or `feat(` | `enhancement` |
+| `fix:` or `fix(` | `bug` |
+| `docs:` or `docs(` | `documentation` |
+| `refactor:`, `chore:`, `style:`, `test:`, `ci:` | `maintenance` |
+| `deps:` or dependency bumps | `dependencies` |
+| Contains `!:` or `BREAKING CHANGE` | `breaking` + type label |
+| Skip changelog | `skip-changelog` |
+
+Example: `gh pr create --title "feat: add resource conventions" --body "..." --label enhancement`
+
 ## Local Skills
 
 - `package-scaffold`: use when adding package capabilities or wiring them through the service provider, including commands, migrations, routes, config, views, translations, assets, middleware, publish tags, workbench files, and console-only behavior.

@@ -6,6 +6,10 @@
 
 - Restored manually written changelog entries in the v0.3.1 section that were overwritten by auto-generated release notes.
 
+### Documentation
+
+- Added release conventions and PR labeling instructions to AGENTS.md and CONTRIBUTING.md for automated changelog generation.
+
 ## [v0.3.1](https://github.com/softpulze/laravibe-standards/compare/v0.3.0...v0.3.1) - 2026-07-27
 
 ### Changed
