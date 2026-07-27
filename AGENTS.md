@@ -41,7 +41,7 @@ Release commands (run from `main` with clean working tree):
 composer test
 git tag -a vX.Y.Z -m "vX.Y.Z"
 git push origin vX.Y.Z
-gh release create vX.Y.Z --title "vX.Y.Z"
+gh release create vX.Y.Z --title "vX.Y.Z" --generate-notes
 ```
 
 The `update-changelog.yml` workflow fires on release and auto-updates CHANGELOG.md. Note: `--title` is required — without it the workflow fails because `latest-version` is empty.

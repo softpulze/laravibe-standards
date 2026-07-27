@@ -2,6 +2,10 @@
 
 ## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.3.3...HEAD)
 
+### Documentation
+
+- Added `--generate-notes` to release command in AGENTS.md so release page is automatically populated with categorized PR notes.
+
 ## [v0.3.3](https://github.com/softpulze/laravibe-standards/compare/v0.3.2...v0.3.3) - 2026-07-27
 
 ### Documentation
