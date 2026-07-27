@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 beforeEach(function () {
     File::deleteDirectory(app_path('Enums'));
     File::ensureDirectoryExists(app_path('Enums'));
-    File::ensureDirectoryExists(base_path('stubs'));
+    File::makeDirectory(base_path('stubs'), 0755, true, true);
 });
 
 afterEach(function () {

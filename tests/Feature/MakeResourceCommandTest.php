@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 beforeEach(function () {
     File::deleteDirectory(app_path('Http/Resources'));
     File::ensureDirectoryExists(app_path('Http/Resources'));
-    File::ensureDirectoryExists(base_path('stubs'));
+    File::makeDirectory(base_path('stubs'), 0755, true, true);
 });
 
 afterEach(function () {
