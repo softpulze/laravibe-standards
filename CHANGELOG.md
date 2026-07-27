@@ -2,6 +2,12 @@
 
 ## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.2.0...1.x)
 
+### Changed
+
+- Enum convention now prefers int-backed enums; string-backed enums are reserved for values that must be human-readable or interoperate with external systems.
+- Updated enum guide, README, and Boost skill examples to use int-backed enums with the `--int` flag.
+- Enum stubs (`enum.stub`, `enum.backed.stub`) now include `declare(strict_types=1)`.
+
 ## [v0.2.0](https://github.com/softpulze/laravibe-standards/compare/v0.1.0...v0.2.0) - 2026-07-23
 
 ### Added

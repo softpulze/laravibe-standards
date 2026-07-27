@@ -207,11 +207,11 @@ it('accepts array type', function () {
 
 // Enum casting
 
-it('casts backed enum from string value', function () {
+it('casts backed enum from int value', function () {
     $dto = ContactDTO::fromArray([
         'email' => 'test@example.com',
         'registeredAt' => '2024-01-15T10:00:00+00:00',
-        'status' => 'active',
+        'status' => 1,
         'role' => 'Admin',
         'profile' => ['name' => 'Alice'],
     ]);
@@ -223,7 +223,7 @@ it('casts unit enum from string name', function () {
     $dto = ContactDTO::fromArray([
         'email' => 'test@example.com',
         'registeredAt' => '2024-01-15T10:00:00+00:00',
-        'status' => 'active',
+        'status' => 1,
         'role' => 'Admin',
         'profile' => ['name' => 'Alice'],
     ]);
@@ -237,7 +237,7 @@ it('casts DateTimeImmutable from string', function () {
     $dto = ContactDTO::fromArray([
         'email' => 'test@example.com',
         'registeredAt' => '2024-01-15T10:00:00+00:00',
-        'status' => 'active',
+        'status' => 1,
         'role' => 'Admin',
         'profile' => ['name' => 'Alice'],
     ]);
@@ -251,7 +251,7 @@ it('casts DateTimeImmutable from Carbon instance', function () {
     $dto = ContactDTO::fromArray([
         'email' => 'test@example.com',
         'registeredAt' => $carbon,
-        'status' => 'active',
+        'status' => 1,
         'role' => 'Admin',
         'profile' => ['name' => 'Alice'],
     ]);
@@ -266,7 +266,7 @@ it('casts nested DTO from array', function () {
     $dto = ContactDTO::fromArray([
         'email' => 'test@example.com',
         'registeredAt' => '2024-01-15T10:00:00+00:00',
-        'status' => 'active',
+        'status' => 1,
         'role' => 'Admin',
         'profile' => ['name' => 'Alice', 'bio' => 'Developer'],
     ]);
@@ -281,7 +281,7 @@ it('passes through an existing DTO instance for nested DTO', function () {
     $dto = ContactDTO::fromArray([
         'email' => 'test@example.com',
         'registeredAt' => '2024-01-15T10:00:00+00:00',
-        'status' => 'active',
+        'status' => 1,
         'role' => 'Admin',
         'profile' => $profile,
     ]);
@@ -295,21 +295,21 @@ it('serializes backed enum to its value in toArray', function () {
     $dto = ContactDTO::fromArray([
         'email' => 'test@example.com',
         'registeredAt' => '2024-01-15T10:00:00+00:00',
-        'status' => 'active',
+        'status' => 1,
         'role' => 'Admin',
         'profile' => ['name' => 'Alice'],
     ]);
 
     $array = $dto->toArray();
 
-    expect($array['status'])->toBe('active');
+    expect($array['status'])->toBe(1);
 });
 
 it('serializes unit enum to its name in toArray', function () {
     $dto = ContactDTO::fromArray([
         'email' => 'test@example.com',
         'registeredAt' => '2024-01-15T10:00:00+00:00',
-        'status' => 'active',
+        'status' => 1,
         'role' => 'Admin',
         'profile' => ['name' => 'Alice'],
     ]);
@@ -325,7 +325,7 @@ it('formats DateTime as Y-m-d H:i:s in toEloquent', function () {
     $dto = ContactDTO::fromArray([
         'email' => 'test@example.com',
         'registeredAt' => '2024-01-15T10:00:00+00:00',
-        'status' => 'active',
+        'status' => 1,
         'role' => 'Admin',
         'profile' => ['name' => 'Alice'],
     ]);
@@ -352,7 +352,7 @@ it('preserves enum and datetime types when using with()', function () {
     $original = ContactDTO::fromArray([
         'email' => 'test@example.com',
         'registeredAt' => '2024-01-15T10:00:00+00:00',
-        'status' => 'active',
+        'status' => 1,
         'role' => 'Admin',
         'profile' => ['name' => 'Alice'],
     ]);

@@ -13,7 +13,7 @@ it('returns options for backed enum', function () {
     expect($options)->toBeArray();
     expect($options[0])->toHaveKeys(['name', 'value', 'label']);
     expect($options[0]['name'])->toBe('Error');
-    expect($options[0]['value'])->toBe('error');
+    expect($options[0]['value'])->toBe(1);
     expect($options[0]['label'])->toBe('Error');
 });
 
@@ -30,7 +30,7 @@ it('returns options for unit enum', function () {
 // values()
 
 it('returns values for backed enum', function () {
-    expect(ToastType::values())->toBe(['error', 'success', 'warning', 'info']);
+    expect(ToastType::values())->toBe([1, 2, 3, 4]);
 });
 
 it('returns values for unit enum', function () {
@@ -46,8 +46,8 @@ it('returns names for backed enum', function () {
 // isValidValue()
 
 it('validates backed enum value', function () {
-    expect(ToastType::isValidValue('error'))->toBeTrue();
-    expect(ToastType::isValidValue('invalid'))->toBeFalse();
+    expect(ToastType::isValidValue(1))->toBeTrue();
+    expect(ToastType::isValidValue(99))->toBeFalse();
 });
 
 it('validates unit enum value', function () {
@@ -66,7 +66,7 @@ it('validates enum name', function () {
 // fromValueOrFail()
 
 it('finds case by backed value', function () {
-    expect(ToastType::fromValueOrFail('error'))->toBe(ToastType::Error);
+    expect(ToastType::fromValueOrFail(1))->toBe(ToastType::Error);
 });
 
 it('finds case by unit value (name)', function () {
@@ -78,7 +78,7 @@ it('finds case by name as fallback for backed enum', function () {
 });
 
 it('throws for invalid value', function () {
-    ToastType::fromValueOrFail('nonexistent');
+    ToastType::fromValueOrFail(99);
 })->throws(InvalidArgumentException::class);
 
 // tryFromName()
@@ -112,7 +112,7 @@ it('returns option array for backed enum', function () {
 
     expect($option)->toBe([
         'name' => 'Error',
-        'value' => 'error',
+        'value' => 1,
         'label' => 'Error',
     ]);
 });

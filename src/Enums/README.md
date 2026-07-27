@@ -11,6 +11,12 @@ Enums define finite domain values and expose a shared, predictable helper contra
 - Use singular, purpose-based enum names, for example `ToastType`.
 - Use TitleCase case names, for example `Error`, `Success`, `Warning`.
 
+## Backing Type
+
+- Prefer int-backed enums for values that are stored in the database or serialized in payloads. Generate with `--int`.
+- Use string-backed enums only when the stored value must be human-readable or interoperates with an external system (e.g., API keys, standard status strings). Generate with `--string`.
+- Use unit enums (no flag) only for in-memory domain concepts that never cross a storage boundary.
+
 ## Shared Concern
 
 Use `SoftPulze\LaravibeStandards\Enums\Concerns\HasEnumMetadata` as the base concern for common enum behavior.
@@ -45,23 +51,23 @@ namespace App\Enums;
 
 use SoftPulze\LaravibeStandards\Enums\Concerns\HasEnumMetadata;
 
-enum ToastType: string
+enum ToastType: int
 {
     use HasEnumMetadata;
 
-    case ERROR = 'error';
-    case SUCCESS = 'success';
-    case WARNING = 'warning';
-    case INFO = 'info';
+    case Error = 1;
+    case Success = 2;
+    case Warning = 3;
+    case Info = 4;
 }
 ```
 
 ```php
 ToastType::options();
 ToastType::values();
-ToastType::isValidValue('success');
-ToastType::tryFromName('warning');
-ToastType::fromValueOrFail('error');
+ToastType::isValidValue(2);
+ToastType::tryFromName('Warning');
+ToastType::fromValueOrFail(1);
 ```
 
 ## Design Rules
