@@ -1,6 +1,6 @@
 # Release Notes
 
-## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.3.0...HEAD)
+## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.3.1...HEAD)
 
 ### Changed
 
@@ -8,6 +8,18 @@
 - Enum convention now prefers int-backed enums; string-backed enums are reserved for values that must be human-readable or interoperate with external systems.
 - Updated enum guide, README, and Boost skill examples to use int-backed enums with the `--int` flag.
 - Enum stubs (`enum.stub`, `enum.backed.stub`) now include `declare(strict_types=1)`.
+
+## [v0.3.1](https://github.com/softpulze/laravibe-standards/compare/v0.3.0...v0.3.1) - 2026-07-27
+
+<!-- Release notes generated using configuration in .github/release.yml at v0.3.1 -->
+### What's Changed
+
+#### Other Changes
+
+* Prefer int-backed enums by @ashokbaruaakas in https://github.com/softpulze/laravibe-standards/pull/5
+* fix: update skill description for automatic agent discovery by @ashokbaruaakas in https://github.com/softpulze/laravibe-standards/pull/6
+
+**Full Changelog**: https://github.com/softpulze/laravibe-standards/compare/v0.3.0...v0.3.1
 
 ## [v0.3.0](https://github.com/softpulze/laravibe-standards/compare/v0.2.0...v0.3.0) - 2026-07-24
 
