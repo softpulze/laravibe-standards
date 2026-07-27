@@ -1,6 +1,8 @@
 # Release Notes
 
-## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.3.2...HEAD)
+## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.3.3...HEAD)
+
+## [v0.3.3](https://github.com/softpulze/laravibe-standards/compare/v0.3.2...v0.3.3) - 2026-07-27
 
 ### Documentation
 
