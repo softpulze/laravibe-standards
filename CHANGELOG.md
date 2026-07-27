@@ -2,22 +2,18 @@
 
 ## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.3.0...HEAD)
 
-## [v0.3.0](https://github.com/softpulze/laravibe-standards/compare/v0.2.0...v0.3.0) - 2026-07-24
-
-<!-- Release notes generated using configuration in .github/release.yml at v0.3.0 -->
-### What's Changed
-
-#### Other Changes
-
-* feat: add resource conventions by @ashokbaruaakas in https://github.com/softpulze/laravibe-standards/pull/4
-
-**Full Changelog**: https://github.com/softpulze/laravibe-standards/compare/v0.2.0...v0.3.0
-
 ### Changed
 
+- Updated Boost skill description with task-specific keywords (DTOs, Enums, API Resources, Action classes, stubs) to enable automatic agent discovery in OpenCode.
 - Enum convention now prefers int-backed enums; string-backed enums are reserved for values that must be human-readable or interoperate with external systems.
 - Updated enum guide, README, and Boost skill examples to use int-backed enums with the `--int` flag.
 - Enum stubs (`enum.stub`, `enum.backed.stub`) now include `declare(strict_types=1)`.
+
+## [v0.3.0](https://github.com/softpulze/laravibe-standards/compare/v0.2.0...v0.3.0) - 2026-07-24
+
+### Added
+
+- feat: add resource conventions by @ashokbaruaakas in https://github.com/softpulze/laravibe-standards/pull/4
 
 ## [v0.2.0](https://github.com/softpulze/laravibe-standards/compare/v0.1.0...v0.2.0) - 2026-07-23
 

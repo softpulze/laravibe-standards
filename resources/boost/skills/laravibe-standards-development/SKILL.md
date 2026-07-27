@@ -1,7 +1,7 @@
 ---
 name: laravibe-standards-development
 description: >
-  Configure and apply the Laravibe Standards package in Laravel applications.
+  Use when creating, editing, or refactoring DTOs, Enums, API Resources, Action classes, or publishing stubs in a Laravel application installed with softpulze/laravibe-standards.
 license: MIT
 metadata:
   author: Ashok Barua Akas
