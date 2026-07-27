@@ -2,6 +2,10 @@
 
 ## [Unreleased](https://github.com/softpulze/laravibe-standards/compare/v0.3.0...HEAD)
 
+### Changed
+
+- Updated Boost skill description with task-specific keywords (DTOs, Enums, API Resources, Action classes, stubs) to enable automatic agent discovery in OpenCode.
+
 ## [v0.3.0](https://github.com/softpulze/laravibe-standards/compare/v0.2.0...v0.3.0) - 2026-07-24
 
 <!-- Release notes generated using configuration in .github/release.yml at v0.3.0 -->
